@@ -11,13 +11,13 @@ class DmozSpider(scrapy.Spider):
 
     def parse(self, response):
         sel = Selector(response)
-        sites = sel.xpath('//div[@class="title-and-desc"]')
+        sites = sel.xpath('//div[normalize-space(@class)="title-and-desc"]')
         items = []
 
         for site in sites:
             item = DmozItem()
-            item['title'] = site.xpath('div[@class="site-title"]/text()').extract()
+            item['title'] = site.xpath('a/div/text()').extract()
             item['link'] = site.xpath('a/@href').extract()
-            #item['description'] = site.xpath('text()').re('-\s[^\n]*\\r')
+            item['desc'] = site.xpath('div/text()').extract()
             items.append(item)
         return items
