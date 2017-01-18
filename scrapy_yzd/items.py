@@ -13,8 +13,17 @@ class ScrapyYzdItem(scrapy.Item):
     # name = scrapy.Field()
     pass
 
+
 class DmozItem(scrapy.Item):
     title = scrapy.Field()
     link = scrapy.Field()
-    desc = scrapy.Field()
+    time = scrapy.Field()
+    pass
+
+
+class DoubanItem(scrapy.Item):
+    title = scrapy.Field()
+    movieInfo = scrapy.Field()
+    star = scrapy.Field()
+    quote = scrapy.Field()
     pass
