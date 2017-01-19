@@ -5,15 +5,14 @@ from scrapy_yzd.items import DmozItem
 
 class DmozSpider(scrapy.Spider):
     name = "dmoz"
-    allowed_domains = ["dmoz.org"]
+    allowed_domains = ["gamersky.com"]
     start_urls = [
-        "http://www.gamersky.com/"
+        "http://www.gamersky.com/review/top/List_52.shtml",
+        "http://www.gamersky.com/review/top/List_51.shtml",
+        "http://www.gamersky.com/review/top/List_50.shtml",
+        "http://www.gamersky.com/review/top/List_49.shtml",
+        "http://www.gamersky.com/review/top/List_48.shtml"
     ]
 
     def parse(self, response):
-        for sel in response.xpath('//ul/li'):
-            item = DmozItem()
-            item['title'] = sel.xpath('a/title').extract()
-            item['link'] = sel.xpath('a/@href').extract()
-            item['time'] = sel.xpath('div[@class="time"]/text()').extract()
-            yield item
+        self.logger.info('A response from %s just arrived!', response.url)

@@ -22,8 +22,9 @@ class DmozItem(scrapy.Item):
 
 
 class DoubanItem(scrapy.Item):
-    title = scrapy.Field()
-    movieInfo = scrapy.Field()
-    star = scrapy.Field()
-    quote = scrapy.Field()
+    movie_name = scrapy.Field()
+    movie_director = scrapy.Field()
+    movie_starring = scrapy.Field()
+    movie_category = scrapy.Field()
+    movie_time = scrapy.Field()
     pass
