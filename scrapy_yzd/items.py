@@ -27,4 +27,10 @@ class DoubanItem(scrapy.Item):
     movie_starring = scrapy.Field()
     movie_category = scrapy.Field()
     movie_time = scrapy.Field()
+    movie_star = scrapy.Field()
+    movie_5score = scrapy.Field()
+    movie_4score = scrapy.Field()
+    movie_3score = scrapy.Field()
+    movie_2score = scrapy.Field()
+    movie_1score = scrapy.Field()
     pass

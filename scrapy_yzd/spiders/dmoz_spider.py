@@ -1,18 +1,35 @@
 # -*- coding: utf-8 -*-
 import scrapy
-from scrapy.selector import Selector
-from scrapy_yzd.items import DmozItem
+from scrapy_yzd.items import DoubanItem
 
 class DmozSpider(scrapy.Spider):
     name = "dmoz"
-    allowed_domains = ["gamersky.com"]
+    allowed_domains = ["movie.douban.com"]
     start_urls = [
-        "http://www.gamersky.com/review/top/List_52.shtml",
-        "http://www.gamersky.com/review/top/List_51.shtml",
-        "http://www.gamersky.com/review/top/List_50.shtml",
-        "http://www.gamersky.com/review/top/List_49.shtml",
-        "http://www.gamersky.com/review/top/List_48.shtml"
+        "https://movie.douban.com/tag/%E5%8A%A8%E7%94%BB"
     ]
 
     def parse(self, response):
-        self.logger.info('A response from %s just arrived!', response.url)
+        for href in response.xpath('//a[@class="nbg"]/@href'):
+            url = href.extract()
+            yield scrapy.Request(url, callback=self.parse_each_movie)
+        next_page = response.xpath('//span[@class="next"]/a/@href').extract()
+        if next_page:
+            print '--------------Finding next page: %s --------------------------', next_page
+            yield scrapy.Request(next_page[0], callback=self.parse)
+
+
+    def parse_each_movie(self, response):
+        item = DoubanItem()
+        item['movie_name'] = response.xpath('//span[@property="v:itemreviewed"]/text()').extract()
+        item['movie_director'] = response.xpath('//a[@rel="v:directedBy"]/text()').extract()
+        item['movie_starring'] = response.xpath('//a[@rel="v:starring"]/text()').extract()
+        item['movie_category'] = response.xpath('//span[@property="v:genre"]/text()').extract()
+        item['movie_time'] = response.xpath('//span[@property="v:runtime"]/text()').extract()
+        item['movie_star'] = response.xpath('//strong[@property="v:average"]/text()').extract()
+        item['movie_5score'] = response.xpath('//span[@class="rating_per"][1]/text()').extract()
+        item['movie_4score'] = response.xpath('//span[@class="rating_per"][2]/text()').extract()
+        item['movie_3score'] = response.xpath('//span[@class="rating_per"][3]/text()').extract()
+        item['movie_2score'] = response.xpath('//span[@class="rating_per"][4]/text()').extract()
+        item['movie_1score'] = response.xpath('//span[@class="rating_per"][5]/text()').extract()
+        yield item
