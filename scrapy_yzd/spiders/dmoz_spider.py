@@ -17,6 +17,8 @@ class DmozSpider(scrapy.Spider):
         if next_page:
             print '--------------Finding next page: %s --------------------------', next_page
             yield scrapy.Request(next_page[0], callback=self.parse)
+        else:
+            print '--------------There is no more page!--------------------------'
 
 
     def parse_each_movie(self, response):
