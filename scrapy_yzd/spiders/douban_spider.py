@@ -2,7 +2,7 @@
 import scrapy
 from scrapy_yzd.items import DoubanItem
 
-class DdoubanSpider(scrapy.Spider):
+class doubanSpider(scrapy.Spider):
     name = "douban"
     allowed_domains = ["movie.douban.com"]
     start_urls = [

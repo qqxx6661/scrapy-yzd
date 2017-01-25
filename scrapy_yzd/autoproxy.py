@@ -43,7 +43,7 @@ class AutoProxyMiddleware(object):
 
         self.fecth_new_proxy()
         self.test_proxyes(self.proxyes, wait=True)
-        logger.info('Use proxy : %s', self.proxy)
+        logger.info('-------------Use proxy : %s---------------', self.proxy)
 
     @classmethod
     def from_crawler(cls, crawler):
@@ -123,9 +123,9 @@ class AutoProxyMiddleware(object):
             if proxy_valid:
                 break
             if self.len_valid_proxy() == 0:
-                logger.info('Available proxys is none.Waiting for fecth new proxy.')
+                logger.info('--------Available proxys is none.Waiting for fetch new proxy.--------')
                 break
-        logger.info('Change proxy to %s', self.proxy[self.proxy_index])
+        logger.info('-------Change proxy to %s------', self.proxy[self.proxy_index])
         logger.info('Available proxys[%s]: %s', self.len_valid_proxy(), self.valid_proxyes())
 
         # 可用代理数量小于预设值则扩展代理
@@ -181,7 +181,7 @@ class AutoProxyMiddleware(object):
         """
         获取新的代理，目前从三个网站抓取代理，每个网站开一个线程抓取代理。
         """
-        logger.info('Starting fecth new proxy.')
+        logger.info('-----Starting fetch new proxy.-----')
         urls = ['xici', 'ip3336', 'kxdaili']
         threads = []
         for url in urls:
