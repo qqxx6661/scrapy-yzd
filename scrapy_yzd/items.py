@@ -21,7 +21,7 @@ class DoubanItem(scrapy.Item):
     movie_starring = scrapy.Field()
     movie_category = scrapy.Field()
     movie_country = scrapy.Field()
-    movie_language = scrapy.Field()
+    #movie_language = scrapy.Field()
     movie_date = scrapy.Field()
     movie_time = scrapy.Field()
     movie_star = scrapy.Field()

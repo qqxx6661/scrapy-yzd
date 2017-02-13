@@ -9,7 +9,7 @@ class DmozSpider(scrapy.Spider):
     name = "dmoz"
     allowed_domains = ["movie.douban.com"]
     start_urls = [
-        "https://movie.douban.com/tag/%E7%88%B1%E6%83%85"
+        "https://movie.douban.com/tag/%E5%8A%A8%E7%94%BB"
     ]
 
 
@@ -19,7 +19,7 @@ class DmozSpider(scrapy.Spider):
             yield scrapy.Request(url, callback=self.parse_each_movie)
         next_page = response.xpath('//span[@class="next"]/a/@href').extract()
         if next_page:
-            print '--------------Finding next page: %s --------------------------', next_page
+            print '--------------Finding next page: [%s] --------------------------', next_page
             yield scrapy.Request(next_page[0], callback=self.parse)
         else:
             print '--------------There is no more page!--------------------------'
@@ -32,7 +32,7 @@ class DmozSpider(scrapy.Spider):
         item['movie_writer'] = response.xpath('//span[@class="attrs"][2]/a/text()').extract()
         item['movie_starring'] = response.xpath('//a[@rel="v:starring"]/text()').extract()
         item['movie_category'] = response.xpath('//span[@property="v:genre"]/text()').extract()
-        item['movie_language'] = response.xpath('//*[@id="info"]').re(r'</span> (.*)<br>\n')[2]
+        #item['movie_language'] = response.xpath('//*[@id="info"]').re(r'</span> (.*)<br>\n')[2]
         item['movie_date'] = response.xpath('//span[@property="v:initialReleaseDate"]/text()').extract()
         item['movie_time'] = response.xpath('//span[@property="v:runtime"]/text()').extract()
         item['movie_star'] = response.xpath('//strong[@property="v:average"]/text()').extract()
