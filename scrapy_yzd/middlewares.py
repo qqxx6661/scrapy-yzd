@@ -5,7 +5,7 @@ from scrapy.downloadermiddlewares.useragent import UserAgentMiddleware
 import base64
 
 
-class ProxyMiddleware(object):
+class ProxyMiddleware(object):  # 该为指定代理，暂未使用
     # overwrite process request
     def process_request(self, request, spider):
         # Set the location of the proxy
@@ -18,7 +18,7 @@ class ProxyMiddleware(object):
         request.headers['Proxy-Authorization'] = 'Basic ' + encoded_user_pass
 
 
-class RotateUserAgentMiddleware(UserAgentMiddleware):
+class RotateUserAgentMiddleware(UserAgentMiddleware):  #轮换代理agent
     def __init__(self, user_agent=''):
         self.user_agent = user_agent
 
