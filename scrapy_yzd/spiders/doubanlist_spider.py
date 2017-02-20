@@ -5,8 +5,8 @@ import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
-class DmozSpider(scrapy.Spider):
-    name = "dmoz"
+class doubanlistSpider(scrapy.Spider):
+    name = "doubanlist"
     allowed_domains = ["movie.douban.com"]
     start_urls = [
         "https://movie.douban.com/tag/%E5%8A%A8%E7%94%BB"
