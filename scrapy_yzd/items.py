@@ -32,3 +32,10 @@ class DoubanItem(scrapy.Item):
     movie_1score = scrapy.Field()
     movie_describe = scrapy.Field()
     pass
+
+class jdItem(scrapy.Item):
+    phone_id = scrapy.Field()
+    phone_name = scrapy.Field()
+    phone_price = scrapy.Field()
+    phone_info = scrapy.Field()
+    pass
