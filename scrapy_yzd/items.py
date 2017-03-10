@@ -37,5 +37,11 @@ class jdItem(scrapy.Item):
     phone_id = scrapy.Field()
     phone_name = scrapy.Field()
     phone_price = scrapy.Field()
-    phone_info = scrapy.Field()
+    phone_houdu = scrapy.Field()
+    phone_CPU = scrapy.Field()
+    phone_ROM = scrapy.Field()
+    phone_RAM = scrapy.Field()
+    phone_screen = scrapy.Field()
+    phone_frontcam = scrapy.Field()
+    phone_backcam = scrapy.Field()
     pass
