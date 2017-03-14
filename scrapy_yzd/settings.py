@@ -19,7 +19,7 @@ LOG_LEVEL = 'INFO'
 #USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -59,7 +59,9 @@ DOWNLOADER_MIDDLEWARES = {
 }
 
 AUTO_PROXY = {  # 代理池中间件设置，详见Github
-    'ban_code': [500, 502, 503, 400, 504]
+    #'test_urls':[('http://www.jd.com', '4006561155')],
+    'ban_code': [500, 502, 503, 400, 504],
+    'init_valid_proxys': 2,
 }
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html

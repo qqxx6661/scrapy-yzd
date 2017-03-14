@@ -2,33 +2,27 @@
 import scrapy
 from scrapy_yzd.items import jdItem
 import json
+import time
+
 
 class jdSpider(scrapy.Spider):
     name = "jd"
     allowed_domains = ["jd.com",
                        "3.cn"]
     start_urls = [
-        "https://list.jd.com/list.html?cat=9987,653,655&delivery=1&stock=1",
-        "https://list.jd.com/list.html?cat=9987,653,655&page=2&delivery=1&stock=1",
-        "https://list.jd.com/list.html?cat=9987,653,655&page=3&delivery=1&stock=1",
-        "https://list.jd.com/list.html?cat=9987,653,655&page=4&delivery=1&stock=1",
-        "https://list.jd.com/list.html?cat=9987,653,655&page=5&delivery=1&stock=1",
-        "https://list.jd.com/list.html?cat=9987,653,655&page=6&delivery=1&stock=1",
-        "https://list.jd.com/list.html?cat=9987,653,655&page=7&delivery=1&stock=1",
-        "https://list.jd.com/list.html?cat=9987,653,655&page=8&delivery=1&stock=1",
-        "https://list.jd.com/list.html?cat=9987,653,655&page=9&delivery=1&stock=1",
-        "https://list.jd.com/list.html?cat=9987,653,655&page=10&delivery=1&stock=1",
-
+        "http://list.jd.com/list.html?cat=9987,653,655&page=1&delivery=1&sort=sort_rank_asc&trans=1&JL=4_10_0#J_main"
     ]
 
     def parse(self, response):
         a = 0
         for href in response.xpath('//div/@data-sku'):
             url = "https://item.jd.com/" + href.extract() + ".html"
+            print url
             yield scrapy.Request(url, callback=self.parse_each_phone)
             a += 1
-        print "Phone number:" + a
-        '''
+        print "This page's phone number:" + str(a)
+
+        time.sleep(20)
         next_page = response.xpath('//a[@class="pn-next"]/@href').extract()
         if next_page:
             next_page = "https://list.jd.com" + next_page[0]
@@ -36,7 +30,6 @@ class jdSpider(scrapy.Spider):
             yield scrapy.Request(next_page, callback=self.parse)
         else:
             print '--------------There is no more page!--------------------------'
-        '''
 
     def parse_price(self, response):
         item = response.meta['item']
@@ -52,7 +45,7 @@ class jdSpider(scrapy.Spider):
         item = jdItem()
         each_id = response.xpath('//ul[@class="parameter2 p-parameter-list"]/li[2]/@title').extract()
         item['phone_id'] = each_id
-        item['phone_name'] = response.xpath('//div[@class="sku-name"]/text()').extract()
+        item['phone_name'] = response.xpath('normalize-space(//div[@class="sku-name"]/text())').extract() #到了美国有空格了，不知道为何，已修复
         item['phone_houdu'] = response.xpath('//*[@id="detail"]/div[2]/div[2]/div[1]/div[2]/dl/dd[4]/text()').extract()
         item['phone_CPU'] = response.xpath('//*[@id="detail"]/div[2]/div[2]/div[1]/div[4]/dl/dd[1]/text()').extract()
         item['phone_ROM'] = response.xpath('//*[@id="detail"]/div[2]/div[2]/div[1]/div[6]/dl/dd[1]/text()').extract()
