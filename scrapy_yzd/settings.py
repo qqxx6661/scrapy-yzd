@@ -27,7 +27,7 @@ ROBOTSTXT_OBEY = False
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 1
+DOWNLOAD_DELAY = 3
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -55,7 +55,7 @@ COOKIES_ENABLED = False
 DOWNLOADER_MIDDLEWARES = {
     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,  # 把本来的代理中间件废掉
     'scrapy_yzd.middlewares.RotateUserAgentMiddleware': 400,  # 切换agent
-    #'scrapy_yzd.autoproxy.AutoProxyMiddleware': 543  # 代理池
+    'scrapy_yzd.autoproxy.AutoProxyMiddleware': 543  # 代理池
 }
 
 AUTO_PROXY = {  # 代理池中间件设置，详见Github
