@@ -16,7 +16,7 @@ NEWSPIDER_MODULE = 'scrapy_yzd.spiders'
 
 LOG_LEVEL = 'INFO'
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36'
+USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -54,8 +54,8 @@ COOKIES_ENABLED = False
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,  # 把本来的代理中间件废掉
-    'scrapy_yzd.middlewares.RotateUserAgentMiddleware': 400,  # 切换agent
-    'scrapy_yzd.autoproxy.AutoProxyMiddleware': 543  # 代理池
+    # 'scrapy_yzd.middlewares.RotateUserAgentMiddleware': 400,  # 切换agent
+    # 'scrapy_yzd.autoproxy.AutoProxyMiddleware': 543  # 代理池
 }
 
 AUTO_PROXY = {  # 代理池中间件设置，详见Github

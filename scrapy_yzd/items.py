@@ -33,6 +33,7 @@ class DoubanItem(scrapy.Item):
     movie_describe = scrapy.Field()
     pass
 
+
 class jdItem(scrapy.Item):
     phone_id = scrapy.Field()
     phone_name = scrapy.Field()
@@ -44,4 +45,9 @@ class jdItem(scrapy.Item):
     phone_screen = scrapy.Field()
     phone_frontcam = scrapy.Field()
     phone_backcam = scrapy.Field()
+    pass
+
+class SteamItem(scrapy.Item):
+    release_date = scrapy.Field()
+    app_name = scrapy.Field()
     pass
