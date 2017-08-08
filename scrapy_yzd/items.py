@@ -48,6 +48,17 @@ class jdItem(scrapy.Item):
     pass
 
 class SteamItem(scrapy.Item):
+
+    name = scrapy.Field()
+    price = scrapy.Field()
     release_date = scrapy.Field()
-    app_name = scrapy.Field()
+    metacritic_score = scrapy.Field()
+    user_reviews_count = scrapy.Field()
+    positive_user_reviews_count = scrapy.Field()
+    positive_percent = scrapy.Field()
+    negative_user_reviews_count = scrapy.Field()
+    steam_user_reviews_count = scrapy.Field()
+    non_steam_user_reviews_count = scrapy.Field()
+    english_user_reviews_count = scrapy.Field()
+    non_english_user_reviews_count = scrapy.Field()
     pass
