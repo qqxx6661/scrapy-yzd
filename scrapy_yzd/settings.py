@@ -53,7 +53,7 @@ COOKIES_ENABLED = False
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,  # 把本来的代理中间件废掉
+    # 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,  # 把本来的代理中间件废掉
     # 'scrapy_yzd.middlewares.RotateUserAgentMiddleware': 400,  # 切换agent
     # 'scrapy_yzd.autoproxy.AutoProxyMiddleware': 543  # 代理池
 }
@@ -63,6 +63,7 @@ AUTO_PROXY = {  # 代理池中间件设置，详见Github
     'ban_code': [500, 502, 503, 400, 504],
     'init_valid_proxys': 2,
 }
+
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
 #EXTENSIONS = {
