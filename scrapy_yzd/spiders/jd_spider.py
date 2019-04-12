@@ -57,10 +57,3 @@ class jdSpider(scrapy.Spider):
         url = "https://p.3.cn/prices/mgets?callback=&skuIds=J_" + each_id
         yield scrapy.Request(url, meta={'item': item}, callback=self.parse_price)
         # yield item # 导致重复商品且无价格，原因未知
-
-
-
-
-
-
-
